@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Books in detail{% endblock %}
+{% block content %}
+<div class="cards">
+<h5 class="card-header">{{ object.title }}</h5>
+<div class="card-body">
+<p class="card-text">{{ object.text }}</p>
+<div class="border p-4 mb-2">
+    {% for review in object.review_set.all %}
+    <div>
+        <h3 class="h4">{{ review.title }}</h3>
+        <span>(Post User: {{ review.user.username }})</span>
+        <h6>Rate:{{ review.rate }}</h6>
+        <p>{{ review.text }}</p>
+    </div>
+</div>
+{% endfor %}
+</div>
+<a href="{% url 'review' object.pk %}" class="btn btn-primary">Review</a>
+<a href="{% url 'list-book' %}" class="btn btn-primary">List</a>
+<a href="{% url 'update-book' object.pk %}" class="btn btn-primary">Edit</a>
+<a href="{% url 'delete-book' object.pk %}" class="btn btn-primary">Delete</a>
+<h6 class="card-title">{{ object.category }}</h6>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Create an account{% endblock %}
+{% block h1 %}Crete an account{% endblock %}
+{% block content %}
+<form>
+    {% csrf_token %}
+    <input type="text" name='username' class="form-control my-4" placeholder="User ID">
+    <input type="password" name='password1' class="form-control mt-4" placeholder="password">
+    <input type="password" name='password2' class="form-control mt-4" placeholder="Confirm Password">
+    <small  class="mb-2 d-block text-start">Set a passwword including 8 charactors</small>
+    {% if form.errors %}
+    <span class="mb-2 small text-danger d-block text-start">You may not utilize your ID or password. Please confirm what you wrote again.</span>
+    {% endif %}
+    <button type="submit" class="btn btn-success m-4">Create an account</button>
+</form>
+{% endblock %}
